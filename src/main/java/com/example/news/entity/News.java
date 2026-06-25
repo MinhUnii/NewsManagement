@@ -17,7 +17,7 @@ public class News {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tăng (Identity) trong SQL Server
     private Long id;
 
-    @Column(nullable = false, length = 255) // Tiêu đề tin tức (Không được để trống)
+    @Column(columnDefinition = "NVARCHAR(MAX)", nullable = false) // Tiêu đề tin tức (Không được để trống)
     private String title;
 
     @Column(columnDefinition = "NVARCHAR(MAX)") // Tóm tắt ngắn gọn

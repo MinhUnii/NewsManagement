@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main-layout :: dynamic_layout(~{::body})}">
+<body>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <a href="/news" class="btn btn-link text-decoration-none p-0 mb-3">
+            <i class="bi bi-arrow-left me-1"></i> Quay lại danh sách
+        </a>
+
+        <article class="bg-white p-4 p-md-5 rounded shadow-sm">
+            <span class="badge bg-success mb-2" th:text="${newsItem.status}">STATUS</span>
+            <h1 class="fw-bold mb-3 text-dark" th:text="${newsItem.title}">Tiêu đề bài viết chi tiết</h1>
+
+            <div class="text-muted mb-4 pb-3 border-bottom d-flex align-items-center">
+                <i class="bi bi-calendar3 me-2"></i>
+                <span th:text="${#temporals.format(newsItem.createdDate, 'dd/MM/yyyy HH:mm')}">25/06/2026</span>
+            </div>
+
+            <p class="lead fw-normal text-secondary mb-4" th:text="${newsItem.summary}">Tóm tắt nội dung...</p>
+
+            <div class="text-dark lh-base" style="font-size: 1.1rem; white-space: pre-line;" th:text="${newsItem.content}">
+                Nội dung chi tiết đầy đủ của bài viết...
+            </div>
+        </article>
+    </div>
+</div>
+</body>
+</html>

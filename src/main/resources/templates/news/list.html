@@ -2,15 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="~{layout/main-layout :: dynamic_layout(~{::body})}">
 <body>
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="mb-4 text-primary border-bottom pb-2">Danh sách tin tức mới nhất</h2>
-        <div class="alert alert-success shadow-sm" role="alert">
-            <i class="bi bi-check-circle-fill me-2"></i>
-            Giao diện Thymeleaf Layout tĩnh kết hợp Bootstrap của bạn đã hoạt động chính xác!
-        </div>
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+    <h2 class="text-primary mb-0">Tin tức mới nhất</h2>
+    <a href="/news/add" class="btn btn-success"><i class="bi bi-plus-circle me-1"></i>Thêm bài viết</a>
+</div>
 
-        <p class="text-muted">Đây là trang nội dung tĩnh được nhúng vào bên trong Layout dùng chung.</p>
+<div class="row">
+    <div class="col-md-6 mb-4" th:each="news : ${newsList}">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+                <span class="badge bg-info text-dark mb-2" th:text="${news.status}">STATUS</span>
+                <h5 class="card-title fw-bold text-dark" th:text="${news.title}">Tiêu đề bài viết</h5>
+                <p class="card-text text-muted" th:text="${news.summary}">Tóm tắt ngắn gọn bài viết mẫu...</p>
+            </div>
+            <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                <small class="text-muted">
+                    <i class="bi bi-calendar3 me-1"></i>
+                    <span th:text="${#temporals.format(news.createdDate, 'dd/MM/yyyy HH:mm')}">25/06/2026</span>
+                </small>
+                <a th:href="@{/news/{id}(id=${news.id})}" class="btn btn-outline-primary btn-sm">Đọc tiếp →</a>
+            </div>
+        </div>
     </div>
 </div>
 </body>

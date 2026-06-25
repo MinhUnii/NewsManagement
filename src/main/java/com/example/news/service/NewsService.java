@@ -6,4 +6,6 @@ import java.util.List;
 public interface NewsService {
     List<News> getAllNews();
     News getNewsById(Long id);
+    void saveNews(News news);    // Thêm hoặc Cập nhật
+    void deleteNewsById(Long id); // Xóa tin tức
 }

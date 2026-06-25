@@ -22,4 +22,14 @@ public class NewsServiceImpl implements NewsService {
         return newsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy bài viết với ID: " + id));
     }
+
+    @Override
+    public void saveNews(News news) {
+        newsRepository.save(news); // JpaRepository tự động biết thêm mới hoặc update dựa vào id [cite: 138, 955]
+    }
+
+    @Override
+    public void deleteNewsById(Long id) {
+        newsRepository.deleteById(id); // Xóa theo khóa chính [cite: 138, 955]
+    }
 }

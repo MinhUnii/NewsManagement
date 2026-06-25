@@ -20,7 +20,13 @@
                     <i class="bi bi-calendar3 me-1"></i>
                     <span th:text="${#temporals.format(news.createdDate, 'dd/MM/yyyy HH:mm')}">25/06/2026</span>
                 </small>
-                <a th:href="@{/news/{id}(id=${news.id})}" class="btn btn-outline-primary btn-sm">Đọc tiếp →</a>
+                <div class="d-flex gap-2">
+                    <a th:href="@{/news/{id}(id=${news.id})}" class="btn btn-sm btn-outline-primary">Đọc tiếp</a>
+                    <a th:href="@{/news/edit/{id}(id=${news.id})}" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i> Sửa</a>
+                    <a th:href="@{/news/delete/{id}(id=${news.id})}"
+                       class="btn btn-sm btn-outline-danger"
+                       onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này không?')"><i class="bi bi-trash"></i> Xóa</a>
+                </div>
             </div>
         </div>
     </div>

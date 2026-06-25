@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main-layout :: dynamic_layout(~{::body})}">
+<body>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white py-3">
+                <h4 class="card-title mb-0 fw-bold"
+                    th:text="${news.id == null} ? 'Thêm Bài Viết Mới' : 'Cập Nhật Bài Viết'">
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <form th:action="@{/news/save}" th:object="${news}" method="POST">
+                    <input type="hidden" th:field="*{id}" />
+                    <input type="hidden" th:field="*{createdDate}" />
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tiêu đề bài viết</label>
+                        <input type="text" class="form-control" th:field="*{title}" required placeholder="Nhập tiêu đề..." />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tóm tắt ngắn gọn</label>
+                        <textarea class="form-control" rows="3" th:field="*{summary}" placeholder="Nhập tóm tắt..."></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nội dung chi tiết</label>
+                        <textarea class="form-control" rows="6" th:field="*{content}" required placeholder="Nhập nội dung..."></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Trạng thái bài viết</label>
+                        <select class="form-select" th:field="*{status}">
+                            <option value="DRAFT">DRAFT (Bản nháp)</option>
+                            <option value="PUBLISHED">PUBLISHED (Xuất bản)</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="/news" class="btn btn-light border">Hủy bỏ</a>
+                        <button type="submit" class="btn btn-success px-4">Lưu bài viết</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
